@@ -1,11 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
-
-
-def see_plot(X, y):
-    plt.scatter(X, y)
-    plt.show()
-
 
 def normalize(feature):
     mu = np.mean(feature)
@@ -39,18 +32,18 @@ def gradientDescent(X, y, theta, alpha, epochs):
         hx = hx.reshape((hx.shape[0]))
         
         err = hx-y
-
-        for i in range(parameters):
-            tmp[i] = theta[i] - alpha*(1/m)*sum(err*X[:, i])
-
-        for i in range(parameters):
-            theta[i] = tmp[i]
         
 ##        theta_zero = theta[0] - alpha*(1/m)*sum(err*X[:, 0])
 ##        theta_one = theta[1] - alpha*(1/m)*sum(err*X[:, 1])
 
 ##        theta[0] = theta_zero
 ##        theta[1] = theta_one
+
+        for i in range(parameters):
+            tmp[i] = theta[i] - alpha*(1/m)*sum(err*X[:, i])
+
+        for i in range(parameters):
+            theta[i] = tmp[i]
 
         J = computeCost(X, y, theta)
 ##        print(">epoch: {0}, alpha: {1}, error: {2}".format(epoch, alpha, J))
